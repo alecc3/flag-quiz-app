@@ -9,4 +9,4 @@ const GET_FLAGS = gql`
   }
 `;
 
-module.exports = GET_FLAGS;
+export default GET_FLAGS;

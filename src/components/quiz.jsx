@@ -46,7 +46,7 @@ export default function Quiz(props){
         </h4>
       </div>
       {list}
-      <button class="skip" onClick={cycle}>
+      <button className="skip" onClick={cycle}>
         Skip
       </button>
     </div>

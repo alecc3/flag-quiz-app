@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import buildSelections from './utils/shuffle'
 import QuizChoice from './QuizChoice'
+import QuizProps from './types/quizprops'
+import Country from './types/country'
 
-export default function Quiz(props){
+export default function Quiz(props : QuizProps){
   const [countryIndex, setcountryIndex] = useState(0);
-  const [choices, setChoices] = useState([]);
+  const [choices, setChoices] = useState(<></>);
   const [score, setScore] = useState(0);
   const [isChecked, setChecked] = useState(false);
   const [result, setResult] = useState("");
@@ -12,10 +14,11 @@ export default function Quiz(props){
   const countries = props.countries
   const flag = countries[countryIndex].emoji
 
-  const addPoints = amount => setScore(score+amount)
+  const addPoints = (amount: number) => setScore(score+amount)
 
-  const checkAnswer = (e) => {
-    const selected = e.target.value
+  const checkAnswer = (e : React.FormEvent<EventTarget>) => {
+    const target = e.target as HTMLInputElement
+    const selected = target.value
     const correct = (selected === countries[countryIndex].name)
     // Add score if user picked correctly
     if (correct){
@@ -42,10 +45,12 @@ export default function Quiz(props){
   // Build new selections on country change
   useEffect(() => {
     const selections = buildSelections(countries, countryIndex)
-    const list =
-      selections.map((country) =>
+    const list : JSX.Element =
+      <>
+      {selections.map((country : Country) =>
           <QuizChoice name={country.name} function={checkAnswer} checked={isChecked}/>
-      )
+      )}
+      </>
     setChoices(list)
   },[countryIndex])
 

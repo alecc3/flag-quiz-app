@@ -1,5 +1,7 @@
-export default function buildSelections(countries, cur) {
-  function shuffleArray(array) {
+import Country from '../types/country'
+
+export default function buildSelections(countries : Country[] , cur : number) {
+  function shuffleArray(array : Country[]) {
     /* Durstenfeld Shuffle */
     for (var i = array.length - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1));

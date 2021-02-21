@@ -4,7 +4,7 @@ import QuizChoice from './QuizChoice'
 import QuizProps from './types/quizprops'
 import Country from './types/country'
 
-const { countryCodeEmoji, emojiCountryCode } = require('country-code-emoji');
+const { emojiCountryCode } = require('country-code-emoji');
 
 export default function Quiz(props : QuizProps){
   const [countryIndex, setcountryIndex] = useState(0);

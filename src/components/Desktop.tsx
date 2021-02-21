@@ -1,5 +1,5 @@
 import { Row, Col } from "react-bootstrap";
-import QuizContainer from './QuizContainer'
+import QuizContainer from './QuizContainer';
 
 const desktopDisplay =
 <>

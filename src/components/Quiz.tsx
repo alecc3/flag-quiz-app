@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import buildSelections from './utils/shuffle'
 import QuizChoice from './QuizChoice'
 import QuizProps from './types/quizprops'
@@ -12,6 +12,7 @@ export default function Quiz(props : QuizProps){
   const [score, setScore] = useState(0);
   const [isChecked, setChecked] = useState(false);
   const [result, setResult] = useState("");
+  let selectedRef = useRef("");
 
   const countries = props.countries
   const flag = countries[countryIndex].emoji
@@ -21,8 +22,13 @@ export default function Quiz(props : QuizProps){
   const addPoints = (amount: number) => setScore(score+amount)
 
   const checkAnswer = (e : React.FormEvent<EventTarget>) => {
+    // Disable additional clicks
+    if(selectedRef.current){
+      return
+    }
     const target = e.target as HTMLInputElement
     const selected = target.value
+    selectedRef.current = (selected);
     const correct = (selected === countries[countryIndex].name)
     // Add score if user picked correctly
     if (correct){
@@ -40,10 +46,11 @@ export default function Quiz(props : QuizProps){
         // Reset check and result for next question
         setChecked(false)
         setResult("")
+        selectedRef.current = ""
         // Pick another random flag
         const random = Math.floor(Math.random() * countries.length)
         setcountryIndex(random)
-    }, 800)
+    }, 1200)
   }
 
   // Build new selections on country change

@@ -1,8 +1,9 @@
 import "./App.css";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
-import { Container, Row, Col } from "react-bootstrap";
-import QuizContainer from "./components/QuizContainer";
+import { Container } from "react-bootstrap";
+import Desktop from './components/Desktop'
+import Mobile from './components/Mobile'
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const countryAPI = require("./config.json").api;
@@ -17,15 +18,12 @@ function App() {
     <ApolloProvider client={client}>
       <div>
         <Container className="container">
-          <Row>
-            <Col></Col>
-            <Col>
-              <div id="box">
-                <QuizContainer />
-              </div>
-            </Col>
-            <Col></Col>
-          </Row>
+          {
+          window.innerWidth > 700 ?
+          Desktop
+          :
+          Mobile
+          }
         </Container>
       </div>
     </ApolloProvider>

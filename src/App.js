@@ -2,11 +2,13 @@ import "./App.css";
 import React from "react";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import { Container, Row, Col } from "react-bootstrap";
-import Flags from "./components/index";
+import QuizContainer from "./components/QuizContainer";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+const countryAPI = require("./config.json").api;
+
 const client = new ApolloClient({
-  uri: "https://countries.trevorblades.com",
+  uri: countryAPI,
   cache: new InMemoryCache(),
 });
 
@@ -19,8 +21,7 @@ function App() {
             <Col></Col>
             <Col>
               <div id="box">
-                <h2>Alec's Flag Quiz 🤓</h2>
-                <Flags />
+                <QuizContainer />
               </div>
             </Col>
             <Col></Col>

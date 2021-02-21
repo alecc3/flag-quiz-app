@@ -1,11 +1,11 @@
 import React from 'react';
-import Quiz from './quiz';
+import Quiz from './Quiz';
 import FLAG_QUERY from './queries/queries'
 const { useQuery } = require("@apollo/client");
 global.fetch = require("node-fetch");
 
 
-export default function Flags() {
+export default function QuizContainer() {
   const { loading, error, data } = useQuery(FLAG_QUERY);
 
   if (loading) return <p>Loading...</p>;
@@ -13,6 +13,7 @@ export default function Flags() {
 
   return (
     <div>
+      <h2>Alec's Flag Quiz 🤓</h2>
       <Quiz countries={data.countries}/>
     </div>
   );

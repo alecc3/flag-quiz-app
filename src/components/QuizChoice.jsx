@@ -1,6 +1,6 @@
 import { Form } from 'react-bootstrap';
 
-export default function QuizOption(props){
+export default function QuizChoice(props){
   return(
     <div key={props.name} className="mb-3">
       <Form.Check 

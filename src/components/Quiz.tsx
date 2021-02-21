@@ -4,6 +4,8 @@ import QuizChoice from './QuizChoice'
 import QuizProps from './types/quizprops'
 import Country from './types/country'
 
+const { countryCodeEmoji, emojiCountryCode } = require('country-code-emoji');
+
 export default function Quiz(props : QuizProps){
   const [countryIndex, setcountryIndex] = useState(0);
   const [choices, setChoices] = useState(<></>);
@@ -13,6 +15,8 @@ export default function Quiz(props : QuizProps){
 
   const countries = props.countries
   const flag = countries[countryIndex].emoji
+  const code = emojiCountryCode(flag).toLowerCase()
+  const flagImg = <img src={`https://www.countryflags.io/${code}/flat/64.png`} alt="curFlag"/>
 
   const addPoints = (amount: number) => setScore(score+amount)
 
@@ -59,7 +63,7 @@ export default function Quiz(props : QuizProps){
       {`Score - ${score}`}
       <div>
         <h1>
-          {flag} {result}
+          {flagImg} {result}
         </h1>
         <h4>
           What country is this?

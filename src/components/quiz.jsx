@@ -14,10 +14,9 @@ export default function Quiz(props){
 
   const addPoints = amount => setScore(score+amount)
 
-  const cycle = (e) => {
+  const checkAnswer = (e) => {
     const selected = e.target.value
     const correct = (selected === countries[countryIndex].name)
-
     // Add score if user picked correctly
     if (correct){
       addPoints(1)
@@ -26,7 +25,10 @@ export default function Quiz(props){
     else{
       setResult("Wrong")
     }
+    cycle()
+  }
 
+  const cycle = () => {
     setTimeout(() => {
         // Reset check and result for next question
         setChecked(false)
@@ -42,7 +44,7 @@ export default function Quiz(props){
     const selections = buildSelections(countries, countryIndex)
     const list =
       selections.map((country) =>
-          <QuizChoice name={country.name} function={cycle} checked={isChecked}/>
+          <QuizChoice name={country.name} function={checkAnswer} checked={isChecked}/>
       )
     setChoices(list)
   },[countryIndex])

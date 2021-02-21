@@ -7,7 +7,7 @@ import Country from './types/country'
 const { emojiCountryCode } = require('country-code-emoji');
 
 export default function Quiz(props : QuizProps){
-  const [countryIndex, setcountryIndex] = useState(0);
+  const [countryIndex, setcountryIndex] = useState(Math.floor(Math.random() * props.countries.length));
   const [choices, setChoices] = useState(<></>);
   const [score, setScore] = useState(0);
   const [isChecked, setChecked] = useState(false);
